@@ -1,31 +1,28 @@
 package uniandes.edu.co.proyecto.modelo;
 
-
-import java.util.*;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="gimnasios")
+@Table(name="bares")
 
-public class Gimnasio {
+public class Bar {
+
     @Id
     @OneToOne
     @JoinColumn(name = "id_servicio", referencedColumnName = "id")
     private Servicio id_servicio;
-    
 
-    private Date horario;
     private Integer capacidad;
+    private String estilo;
 
-    
 
-    public Gimnasio(Servicio id_servicio, Date horario, Integer capacidad) {
+    public Bar(Servicio id_servicio, Integer capacidad, String estilo) {
         this.id_servicio = id_servicio;
-        this.horario = horario;
         this.capacidad = capacidad;
+        this.estilo = estilo;
     }
 
-    public Gimnasio()
+    public Bar() 
     {;}
 
     public Servicio getId_servicio() {
@@ -36,14 +33,6 @@ public class Gimnasio {
         this.id_servicio = id_servicio;
     }
 
-    public Date getHorario() {
-        return horario;
-    }
-
-    public void setHorario(Date horario) {
-        this.horario = horario;
-    }
-
     public Integer getCapacidad() {
         return capacidad;
     }
@@ -52,15 +41,13 @@ public class Gimnasio {
         this.capacidad = capacidad;
     }
 
-    
+    public String getEstilo() {
+        return estilo;
+    }
 
-    
+    public void setEstilo(String estilo) {
+        this.estilo = estilo;
+    }
 
+      
 }
-
-
-
-
-
-
-

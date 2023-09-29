@@ -1,52 +1,54 @@
 package uniandes.edu.co.proyecto.modelo;
 
-
-import java.util.*;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="gimnasios")
+@Table(name="salasconferencias")
 
-public class Gimnasio {
+public class SalaConferencia {
     @Id
     @OneToOne
     @JoinColumn(name = "id_servicio", referencedColumnName = "id")
     private Servicio id_servicio;
-    
 
-    private Date horario;
+    private Integer costo;
     private Integer capacidad;
 
     
-
-    public Gimnasio(Servicio id_servicio, Date horario, Integer capacidad) {
+    public SalaConferencia(Servicio id_servicio, Integer costo, Integer capacidad) {
         this.id_servicio = id_servicio;
-        this.horario = horario;
+        this.costo = costo;
         this.capacidad = capacidad;
     }
 
-    public Gimnasio()
+    public SalaConferencia() 
     {;}
+
 
     public Servicio getId_servicio() {
         return id_servicio;
     }
 
+
     public void setId_servicio(Servicio id_servicio) {
         this.id_servicio = id_servicio;
     }
 
-    public Date getHorario() {
-        return horario;
+
+    public Integer getCosto() {
+        return costo;
     }
 
-    public void setHorario(Date horario) {
-        this.horario = horario;
+
+    public void setCosto(Integer costo) {
+        this.costo = costo;
     }
+
 
     public Integer getCapacidad() {
         return capacidad;
     }
+
 
     public void setCapacidad(Integer capacidad) {
         this.capacidad = capacidad;
@@ -55,12 +57,4 @@ public class Gimnasio {
     
 
     
-
 }
-
-
-
-
-
-
-
