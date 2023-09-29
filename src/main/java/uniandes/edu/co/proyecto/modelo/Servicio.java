@@ -1,23 +1,20 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name="Servicios")
+@Table(name="servicios")
 
 public class Servicio {
 
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-
     private Integer id;
+
     private String descripcion;
     private String nombre;
+    //private TipoHabitacion consumosNumeroFactura; -> Falta hacer esta clase
 
     public Servicio(String descripcion, String nombre)
     {   
