@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import uniandes.edu.co.proyecto.modelo.Habitacion;
 import uniandes.edu.co.proyecto.modelo.TipoHabitacion;
 import uniandes.edu.co.proyecto.repositorio.TipoHabitacionRepository;
 
@@ -36,19 +37,30 @@ public class TiposHabitacionController{
         return "redirect:/tiposhabitacion";
     }
 
-    //POSIBLE FUENTE DE ERROR, INTEGER Y NO LONG COMO ID
     @GetMapping("/tiposhabitacion/{nombre}/edit")
     public String tipoHabitacionEditarForm(@PathVariable("nombre") String nombre, Model model) {
         TipoHabitacion tipoHabitacion = tipoHabitacionRepository.darTipoHabitacion(nombre);
         if(tipoHabitacion != null) {
-            model.addAttribute("tipohabitacion");
+            model.addAttribute("tipohabitacion", tipoHabitacion);
             return "tipohabitacionEditar";
-        
         }
         else {
             return "redirect:/tiposhabitacion";
         }
+    }
 
+    @PostMapping("/tiposhabitacion/{nombre}/edit/save")
+    public String tipoHabitacionEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute TipoHabitacion tipohabitacion){
+        tipoHabitacionRepository.actualizarTipoHabitacion(nombre, tipohabitacion.getCapacidad(), tipohabitacion.getCosto());
+        return "redirect:/tiposhabitacion";
+    }
+
+
+    //POSIBLE FUENTE DE ERROR, INTEGER Y NO LONG COMO ID
+    @GetMapping("/tiposhabitacion/{nombre}/delete")
+    public String tipoHabitacionBorrar(@PathVariable("nombre") String nombre) {
+        tipoHabitacionRepository.eliminarTipoHabitacion(nombre);
+        return "redirect:/tiposhabitacion";
     }
 
 }

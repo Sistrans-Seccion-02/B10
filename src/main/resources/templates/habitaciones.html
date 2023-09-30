@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tipos De Habitacion</title>
+    <title>Habitaciones</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
     <div>
-        <h1>Lista de Tipos de Habitacion</h1>
+        <h1>Lista de Habitaciones</h1>
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th>Nombre</th>
-                    <th>Capacidad</th>
-                    <th>Costo</th>
-                    <th>Acciones</th>
+                    <th>Numero</th>
+                    <th>Tipo</th>
+
+
+
                 </tr>
-                <th:block th:each="tipohabitacion:${tiposhabitacion}">
+                <th:block th:each="habitacion:${habitaciones}">
                     <tr>
-                        <td th:text="${tipohabitacion.nombre}"></td>
-                        <td th:text="${tipohabitacion.capacidad}"></td>
-                        <td th:text="${tipohabitacion.costo}"></td>
+                        <td th:text="${habitacion.numero}"></td>
+                        <td th:text="${habitacion.tipoHabitacion.nombre}"></td>
                         <td>
-                            <a th:href="@{tiposhabitacion/{nombre}/edit(nombre=${tipohabitacion.nombre})}">
+                            <a th:href="@{habitaciones/{numero}/edit(numero=${habitacion.numero})}">
                                 Editar
                             </a>
-                            <a th:href="@{tiposhabitacion/{nombre}/delete(nombre=${tipohabitacion.nombre})}"
+                            <a th:href="@{habitaciones/{numero}/delete(numero=${habitacion.numero})}"
                             onclick="return confirm('¿segurito?')">
                                 Borrar
                             </a>
@@ -37,8 +37,9 @@
         </table>
         <div>
             <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
-            <a th:href="@{tiposhabitacion/new}" class="btn btn-primary">Añadir Tipo de Habitacion</a>
+            <a th:href="@{habitaciones/new}" class="btn btn-primary">Añadir Habitacion</a>
         </div>
     </div>
+    
 </body>
 </html>

@@ -33,14 +33,14 @@ public class HabitacionController {
         model.addAttribute("tipos", tipoHabitacionRepository.darTiposHabitacion());
         return "habitacionNuevo";
     }
-/* 
+
     @PostMapping("/habitaciones/new/save")
     public String habitacionGuardar(@ModelAttribute Habitacion habitacion){
         habitacionRepository.insertarHabitacion(
             habitacion.getNumero(), habitacion.getTipoHabitacion().getNombre());
         return "redirect:/habitaciones";
     }
-*/
+
     //POSIBLE FUENTE DE ERROR, INTEGER Y NO LONG COMO ID
     @GetMapping("/habitaciones/{numero}/edit")
     public String habitacionEditarForm(@PathVariable("numero") Integer numero, Model model) {
