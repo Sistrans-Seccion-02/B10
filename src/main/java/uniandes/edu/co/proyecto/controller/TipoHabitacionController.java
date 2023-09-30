@@ -12,7 +12,7 @@ import uniandes.edu.co.proyecto.modelo.TipoHabitacion;
 import uniandes.edu.co.proyecto.repositorio.TipoHabitacionRepository;
 
 @Controller
-public class TiposHabitacionController{
+public class TipoHabitacionController{
 
     @Autowired
     private TipoHabitacionRepository tipoHabitacionRepository;

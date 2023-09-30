@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.PlanConsumo;
 public interface PlanConsumoRepository extends JpaRepository<PlanConsumo, String>{
 
     @Query(value = "SELECT * FROM planesconsumo", nativeQuery = true)
-    Collection<PlanConsumo> darplanesconsumo();
+    Collection<PlanConsumo> darPlanesconsumo();
 
     @Query(value = "SELECT * FROM planesconsumo WHERE nombre=:nombre", nativeQuery = true)
     PlanConsumo darPlanConsumo(@Param("nombre") String nombre);
