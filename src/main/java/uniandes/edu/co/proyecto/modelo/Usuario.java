@@ -21,11 +21,11 @@ public class Usuario {
 
 
     @OneToOne
-    @JoinColumn(name = "tiposusuario_nombre", referencedColumnName = "nombre")
+    @JoinColumn(name = "tipo_usuario", referencedColumnName = "nombre")
     private TipoUsuario tipoUsuario;
 
     @OneToOne
-    @JoinColumn(name = "planconsumo_nombre", referencedColumnName = "nombre")
+    @JoinColumn(name = "plan_consumo", referencedColumnName = "nombre")
     private PlanConsumo planConsumo;
 
 
@@ -76,11 +76,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getTipo_documento() {
+    public String getTipoDocumento() {
         return tipo_documento;
     }
 
-    public void setTipo_documento(String tipo_documento) {
+    public void setTipoDocumento(String tipo_documento) {
         this.tipo_documento = tipo_documento;
     }
 
@@ -92,19 +92,19 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public Date getFecha_entrada() {
+    public Date getFechaEntrada() {
         return fecha_entrada;
     }
 
-    public void setFecha_entrada(Date fecha_entrada) {
+    public void setFechaEntrada(Date fecha_entrada) {
         this.fecha_entrada = fecha_entrada;
     }
 
-    public Date getFecha_salida() {
+    public Date getFechaSalida() {
         return fecha_salida;
     }
 
-    public void setFecha_salida(Date fecha_salida) {
+    public void setFechaSalida(Date fecha_salida) {
         this.fecha_salida = fecha_salida;
     }
     
