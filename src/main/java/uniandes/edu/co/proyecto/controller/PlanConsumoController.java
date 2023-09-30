@@ -25,8 +25,8 @@ public class PlanConsumoController{
 
     @GetMapping("/planesconsumo/new")
     public String planConsumoForm(Model model){
-        model.addAttribute("planConsumo", new PlanConsumo());
-        return "planConsumoNuevo";
+        model.addAttribute("planconsumo", new PlanConsumo());
+        return "planconsumoNuevo";
     }
 
     @PostMapping("/planesconsumo/new/save")
@@ -40,8 +40,8 @@ public class PlanConsumoController{
     public String planConsumoEditarForm(@PathVariable("nombre") String nombre, Model model) {
         PlanConsumo planConsumo = planConsumoRepository.darPlanConsumo(nombre);
         if(planConsumo != null) {
-            model.addAttribute("planConsumo");
-            return "planConsumoEditar";
+            model.addAttribute("planconsumo");
+            return "planconsumoEditar";
         
         }
         else {

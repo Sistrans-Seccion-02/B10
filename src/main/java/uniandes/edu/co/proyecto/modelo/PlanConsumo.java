@@ -33,7 +33,7 @@ public  class PlanConsumo {
         this.nombre = nombre;
     }
 
-    public void setCapacidad(String descripcion) {
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 

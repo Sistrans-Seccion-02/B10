@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planes De Consumo</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Lista de Planes De Consumo</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                </tr>
+                <th:block th:each="planconsumo:${planesconsumo}">
+                    <tr>
+                        <td th:text="${planconsumo.nombre}"></td>
+                        <td th:text="${planconsumo.descripcion}"></td>
+                        <td>
+                            <a th:href="@{planesconsumo/{nombre}/edit(nombre=${planconsumo.nombre})}">
+                                Editar
+                            </a>
+                            <a th:href="@{planesconsumo/{nombre}/delete(nombre=${planconsumo.nombre})}"
+                            onclick="return confirm('¿seguro?')">
+                                Borrar
+                            </a>
+                        </td>
+                    </tr>
+                </th:block>
+            </thead>
+        </table>
+        <div>
+            <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+            <a th:href="@{planesconsumo/new}" class="btn btn-primary">Añadir Planes De Consumo</a>
+        </div>
+    </div>
+</body>
+</html>
