@@ -1,3 +1,4 @@
+/* 
 package uniandes.edu.co.proyecto.repositorio;
 
 import java.sql.Date;
@@ -9,8 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.PlanConsumo;
-import uniandes.edu.co.proyecto.modelo.TipoUsuario;
 import uniandes.edu.co.proyecto.modelo.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
@@ -41,3 +40,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
     void eliminarUsuario(@Param("numero_documento") Integer numero_documento);
     
 }
+*/

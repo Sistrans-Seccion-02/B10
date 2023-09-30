@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import uniandes.edu.co.proyecto.modelo.Habitacion;
+
 import uniandes.edu.co.proyecto.modelo.TipoHabitacion;
 import uniandes.edu.co.proyecto.repositorio.TipoHabitacionRepository;
 

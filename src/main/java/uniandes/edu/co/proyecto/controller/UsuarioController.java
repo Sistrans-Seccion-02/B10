@@ -1,3 +1,5 @@
+/*
+
 package uniandes.edu.co.proyecto.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +39,14 @@ public class UsuarioController{
         return "usuarioNuevo";
     }
 
-    /* 
+
     @PostMapping("/usuarios/new/save")
     public String usuarioGuardar(@ModelAttribute Usuario usuario){
         usuarioRepository.insertarUsuario(
-            usuario.getNumero_documento(), usuario.getTipoUsuario(), usuario.getPlanConsumo(), usuario.getEmail(), usuario.getTipo_documento(), usuario.getNombre(), usuario.getFecha_entrada(), usuario.getFecha_salida());
+            usuario.getNumero_documento(), usuario.getTipoUsuario().getNombre(), usuario.getPlanConsumo().getNombre(), usuario.getEmail(), usuario.getTipoDocumento(), usuario.getNombre(), usuario.getFechaEntrada(), usuario.getFechaSalida());
         return "redirect:/usuarios";
     }
-    */
+
     @GetMapping("/usuarios/{numero_documento}/edit")
     public String usuarioEditarForm(@PathVariable("numero_documento") Integer numero_documento, Model model) {
         Usuario usuario = usuarioRepository.darUsuario(numero_documento);
@@ -74,7 +76,6 @@ public class UsuarioController{
     }
 
 
-    //POSIBLE FUENTE DE ERROR, INTEGER Y NO LONG COMO ID
     @GetMapping("/usuarios/{numero_documento}/delete")
     public String usuarioBorrar(@PathVariable("numero_documento") Integer numero_documento) {
         usuarioRepository.eliminarUsuario(numero_documento);
@@ -82,3 +83,4 @@ public class UsuarioController{
     }
     
 }
+*/

@@ -1,3 +1,4 @@
+/* 
 package uniandes.edu.co.proyecto.modelo;
 
 import java.sql.Date;
@@ -112,3 +113,4 @@ public class Usuario {
 
     
 }
+*/
