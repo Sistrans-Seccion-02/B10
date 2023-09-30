@@ -1,9 +1,10 @@
+/* 
 package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="internet")
+@Table(name="internets")
 
 
 public class Internet {
@@ -52,3 +53,5 @@ public class Internet {
 
     
 }
+
+*/

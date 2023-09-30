@@ -1,26 +1,23 @@
 package uniandes.edu.co.proyecto.modelo;
 
-
-import java.util.*;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="piscinas")
 
 public class Piscina {
-    @Id
-    @OneToOne
-    @JoinColumn(name = "id_servicio", referencedColumnName = "id")
-    private Servicio id_servicio;
 
-    private Date horario;
+    @EmbeddedId
+    private PiscinaPK id_servicio;
+
+    private String horario;
     private Integer capacidad;
     private Integer profundidad;
     
     
 
-    public Piscina(Servicio id_servicio, Date horario, Integer capacidad, Integer profundidad) {
-        this.id_servicio = id_servicio;
+    public Piscina(Servicio id_servicio, String horario, Integer capacidad, Integer profundidad) {
+        this.id_servicio = new PiscinaPK(id_servicio);
         this.horario = horario;
         this.capacidad = capacidad;
         this.profundidad = profundidad;
@@ -29,37 +26,38 @@ public class Piscina {
     public Piscina()
     {;}
 
-    public void setId_servicio(Servicio id_servicio) {
-        this.id_servicio = id_servicio;
-    }
+	public PiscinaPK getId_servicio() {
+		return id_servicio;
+	}
 
-    public void setHorario(Date horario) {
-        this.horario = horario;
-    }
+	public void setId_servicio(PiscinaPK id_servicio) {
+		this.id_servicio = id_servicio;
+	}
 
-    public void setCapacidad(Integer capacidad) {
-        this.capacidad = capacidad;
-    }
+	public String getHorario() {
+		return horario;
+	}
 
-    public void setProfundidad(Integer profundidad) {
-        this.profundidad = profundidad;
-    }
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
 
-    public Servicio getId_servicio() {
-        return id_servicio;
-    }
+	public Integer getCapacidad() {
+		return capacidad;
+	}
 
-    public Date getHorario() {
-        return horario;
-    }
+	public void setCapacidad(Integer capacidad) {
+		this.capacidad = capacidad;
+	}
 
-    public Integer getCapacidad() {
-        return capacidad;
-    }
+	public Integer getProfundidad() {
+		return profundidad;
+	}
 
-    public Integer getProfundidad() {
-        return profundidad;
-    }
+	public void setProfundidad(Integer profundidad) {
+		this.profundidad = profundidad;
+	}
+
 
   
 }

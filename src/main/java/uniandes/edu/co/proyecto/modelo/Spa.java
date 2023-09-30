@@ -1,9 +1,11 @@
+/* 
+
 package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="serviciosspa")
+@Table(name="spas")
 
 public class Spa {
     @Id
@@ -42,3 +44,5 @@ public class Spa {
     
     
 }
+
+*/

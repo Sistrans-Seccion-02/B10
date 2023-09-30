@@ -1,3 +1,5 @@
+/* 
+
 package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.*;
@@ -103,3 +105,6 @@ public class Producto {
 
     
 }
+
+
+*/

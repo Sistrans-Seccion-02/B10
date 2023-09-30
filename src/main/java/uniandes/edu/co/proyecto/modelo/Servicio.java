@@ -10,11 +10,13 @@ public class Servicio {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private Integer id_servicio;
+
+
 
     private String descripcion;
     private String nombre;
-    //private TipoHabitacion consumosNumeroFactura; -> Falta hacer esta clase
+    //private Consumo consumosNumeroFactura; -> Falta hacer esta clase de Consumo
 
     public Servicio(String descripcion, String nombre)
     {   
@@ -26,7 +28,7 @@ public class Servicio {
     {;}
 
     public Integer getId() {
-        return id;
+        return id_servicio;
     }
 
     public String getDescripcion() {
@@ -37,8 +39,8 @@ public class Servicio {
         return nombre;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer id_servicio) {
+        this.id_servicio = id_servicio;
     }
 
     public void setDescripcion(String descripcion) {
@@ -50,10 +52,5 @@ public class Servicio {
     }
 
     
-
-    
-
-
-
     
 }

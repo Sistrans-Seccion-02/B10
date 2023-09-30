@@ -1,9 +1,10 @@
+/* 
 package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="servicioslavanderia")
+@Table(name="lavanderias")
 
 public class Lavanderia {
 
@@ -40,3 +41,5 @@ public class Lavanderia {
 
    
 }
+
+*/
