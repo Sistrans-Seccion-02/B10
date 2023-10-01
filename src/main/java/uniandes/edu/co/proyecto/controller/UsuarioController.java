@@ -1,5 +1,3 @@
-/*
-
 package uniandes.edu.co.proyecto.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +50,8 @@ public class UsuarioController{
         Usuario usuario = usuarioRepository.darUsuario(numero_documento);
         if(usuario != null) {
             model.addAttribute("usuario", usuario);
-            model.addAttribute("tipo", tipoUsuarioRepository.darTiposUsuario());
-            model.addAttribute("plan", planConsumoRepository.darPlanesConsumo());
+            model.addAttribute("tipo_usuario", tipoUsuarioRepository.darTiposUsuario());
+            model.addAttribute("plan_consumo", planConsumoRepository.darPlanesConsumo());
             model.addAttribute("email", usuario.getEmail());
             model.addAttribute("tipo_documento", usuario.getTipoDocumento());
             model.addAttribute("nombre", usuario.getNombre());
@@ -83,4 +81,3 @@ public class UsuarioController{
     }
     
 }
-*/

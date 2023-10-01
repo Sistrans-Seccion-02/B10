@@ -1,4 +1,3 @@
-/* 
 package uniandes.edu.co.proyecto.modelo;
 
 import java.sql.Date;
@@ -30,11 +29,11 @@ public class Usuario {
     private PlanConsumo planConsumo;
 
 
-    public Usuario(Integer numero_documento, TipoUsuario tipo, PlanConsumo plan, String email, String tipo_documento, String nombre, Date fecha_entrada, Date fecha_salida)
+    public Usuario(Integer numero_documento, TipoUsuario tipo_usuario, PlanConsumo plan_consumo, String email, String tipo_documento, String nombre, Date fecha_entrada, Date fecha_salida)
     {
         this.numero_documento = numero_documento;
-        this.tipoUsuario = tipo;
-        this.planConsumo = plan;
+        this.tipoUsuario = tipo_usuario;
+        this.planConsumo = plan_consumo;
         this.email = email;
         this.tipo_documento = tipo_documento;
         this.nombre = nombre;
@@ -57,16 +56,16 @@ public class Usuario {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setTipoUsuario(TipoUsuario tipo_usuario) {
+        this.tipoUsuario = tipo_usuario;
     }
 
     public PlanConsumo getPlanConsumo() {
         return planConsumo;
     }
 
-    public void setPlanConsumo(PlanConsumo planConsumo) {
-        this.planConsumo = planConsumo;
+    public void setPlanConsumo(PlanConsumo plan_consumo) {
+        this.planConsumo = plan_consumo;
     }
 
     public String getEmail() {
@@ -113,4 +112,3 @@ public class Usuario {
 
     
 }
-*/

@@ -1,4 +1,3 @@
-/* 
 package uniandes.edu.co.proyecto.repositorio;
 
 import java.sql.Date;
@@ -30,7 +29,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE usuarios SET tipo_usuario=:tipo_usuario, plan_consumo=:plan_consumo, email=:email, tipo_documento=:tipo_documento, nombre:=nombre, fecha_entrada=:fecha_entrada, fecha_salida=:fecha_salida WHERE numero_documento=:numero_documento", nativeQuery = true)
+    @Query(value = "UPDATE usuarios SET tipo_usuario=:tipo_usuario, plan_consumo=:plan_consumo, email=:email, tipo_documento=:tipo_documento, nombre=:nombre, fecha_entrada=:fecha_entrada, fecha_salida=:fecha_salida WHERE numero_documento=:numero_documento", nativeQuery = true)
     void actualizarUsuario(@Param("numero_documento")Integer numero_documento, @Param("tipo_usuario") String tipo_usuario, @Param("plan_consumo") String plan_consumo, @Param("email") String email, @Param("tipo_documento") String tipo_documento, @Param("nombre") String nombre, @Param("fecha_entrada") Date fecha_entrada, @Param("fecha_salida") Date fecha_salida);
 
 
@@ -40,4 +39,3 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
     void eliminarUsuario(@Param("numero_documento") Integer numero_documento);
     
 }
-*/
