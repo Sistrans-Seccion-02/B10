@@ -51,8 +51,6 @@ public class Usuario {
         this.planConsumo = planesconsumo_nombre;
 
 
-        
-        
     }
 
     public Usuario()
