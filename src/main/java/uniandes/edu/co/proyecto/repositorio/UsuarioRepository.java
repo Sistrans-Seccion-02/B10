@@ -23,14 +23,14 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
   
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO usuarios (numero_documento, tipo_usuario, plan_consumo, email, tipo_documento, nombre, fecha_entrada, fecha_salida) VALUES( :numero_documento, :tipo_usuarioe, :plan_consumo, :email, :tipo_documento, :nombre, :fecha_entrada, :fecha_salida)", nativeQuery = true)
-    void insertarUsuario(@Param("numero_documento")Integer numero_documento, @Param("tipo_usuario") String tipo_usuario, @Param("plan_consumo") String plan_consumo, @Param("email") String email, @Param("tipo_documento") String tipo_documento, @Param("nombre") String nombre, @Param("fecha_entrada") Date fecha_entrada, @Param("fecha_salida") Date fecha_salida);
+    @Query(value = "INSERT INTO usuarios (numero_documento, tipo_documento, email, nombre, fecha_entrada, fecha_salida, codigo, fecha_inicio, fecha_fin, check_in, check_out, tiposusuario_nombre, planesconsumo_nombre) VALUES(:numero_documento, :tipo_documento, :email, :nombre, :fecha_entrada, :fecha_salida, :codigo, :fecha_inicio, :fecha_fin, :check_in, :check_out, :tiposusuario_nombre, :planesconsumo_nombre)", nativeQuery = true)
+    void insertarUsuario(@Param("numero_documento")Integer numero_documento, @Param("tipo_documento") String tipo_documento, @Param("email") String email,  @Param("nombre") String nombre,  @Param("fecha_entrada") Date fecha_entrada, @Param("fecha_salida") Date fecha_salida, @Param("codigo") Integer codigo, @Param("fecha_inicio") Date fecha_inicio, @Param("fecha_fin") Date fecha_fin,  @Param("check_in") Boolean check_in, @Param("check_out") Boolean check_out,  @Param("tiposusuario_nombre") String tiposusuario_nombre, @Param("planesconsumo_nombre") String planesconsumo_nombre);
 
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE usuarios SET tipo_usuario=:tipo_usuario, plan_consumo=:plan_consumo, email=:email, tipo_documento=:tipo_documento, nombre=:nombre, fecha_entrada=:fecha_entrada, fecha_salida=:fecha_salida WHERE numero_documento=:numero_documento", nativeQuery = true)
-    void actualizarUsuario(@Param("numero_documento")Integer numero_documento, @Param("tipo_usuario") String tipo_usuario, @Param("plan_consumo") String plan_consumo, @Param("email") String email, @Param("tipo_documento") String tipo_documento, @Param("nombre") String nombre, @Param("fecha_entrada") Date fecha_entrada, @Param("fecha_salida") Date fecha_salida);
+    @Query(value = "UPDATE usuarios SET tipo_documento=:tipo_documento, email=:email, nombre=:nombre, fecha_entrada=:fecha_entrada, fecha_salida=:fecha_salida, codigo=:codigo, fecha_inicio=:fecha_inicio, fecha_fin=:fecha_fin, check_in=:check_in, check_out=:check_out, tiposusuario_nombre=:tiposusuario_nombre, planesconsumo_nombre=:planesconsumo_nombre  WHERE numero_documento=:numero_documento", nativeQuery = true)
+    void actualizarUsuario(@Param("numero_documento")Integer numero_documento, @Param("tipo_documento") String tipo_documento, @Param("email") String email,  @Param("nombre") String nombre,  @Param("fecha_entrada") Date fecha_entrada, @Param("fecha_salida") Date fecha_salida, @Param("codigo") Integer codigo, @Param("fecha_inicio") Date fecha_inicio, @Param("fecha_fin") Date fecha_fin,  @Param("check_in") Boolean check_in, @Param("check_out") Boolean check_out,  @Param("tiposusuario_nombre") String tiposusuario_nombre, @Param("planesconsumo_nombre") String planesconsumo_nombre);
 
 
     @Modifying

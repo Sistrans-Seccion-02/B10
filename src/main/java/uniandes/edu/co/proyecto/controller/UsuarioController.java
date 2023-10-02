@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import uniandes.edu.co.proyecto.modelo.Habitacion;
 import uniandes.edu.co.proyecto.modelo.Usuario;
 import uniandes.edu.co.proyecto.repositorio.UsuarioRepository;
 import uniandes.edu.co.proyecto.repositorio.TipoUsuarioRepository;
@@ -33,7 +34,9 @@ public class UsuarioController{
 
     @GetMapping("/usuarios/new")
     public String usuarioForm(Model model){
-        model.addAttribute("usuario", new Usuario());
+            model.addAttribute("usuario", new Usuario());
+            model.addAttribute("tiposusuario_nombre", tipoUsuarioRepository.darTiposUsuario());
+            model.addAttribute("planesconsumo_nombre", planConsumoRepository.darPlanesConsumo());
         return "usuarioNuevo";
     }
 
@@ -41,7 +44,7 @@ public class UsuarioController{
     @PostMapping("/usuarios/new/save")
     public String usuarioGuardar(@ModelAttribute Usuario usuario){
         usuarioRepository.insertarUsuario(
-            usuario.getNumero_documento(), usuario.getTipoUsuario().getNombre(), usuario.getPlanConsumo().getNombre(), usuario.getEmail(), usuario.getTipoDocumento(), usuario.getNombre(), usuario.getFechaEntrada(), usuario.getFechaSalida());
+            usuario.getNumero_documento(), usuario.getTipoDocumento(), usuario.getEmail(), usuario.getNombre(), usuario.getFechaEntrada(), usuario.getFechaSalida(), usuario.getCodigo(), usuario.getFechaInicio(), usuario.getFechaFin(), usuario.getCheckIn(), usuario.getCheckOut(), usuario.getTipoUsuario().getNombre(), usuario.getPlanConsumo().getNombre());
         return "redirect:/usuarios";
     }
 
@@ -50,13 +53,16 @@ public class UsuarioController{
         Usuario usuario = usuarioRepository.darUsuario(numero_documento);
         if(usuario != null) {
             model.addAttribute("usuario", usuario);
-            model.addAttribute("tipo_usuario", tipoUsuarioRepository.darTiposUsuario());
-            model.addAttribute("plan_consumo", planConsumoRepository.darPlanesConsumo());
-            model.addAttribute("email", usuario.getEmail());
             model.addAttribute("tipo_documento", usuario.getTipoDocumento());
+            model.addAttribute("email", usuario.getEmail());
             model.addAttribute("nombre", usuario.getNombre());
             model.addAttribute("fecha_entrada", usuario.getFechaEntrada());
             model.addAttribute("fecha_salida", usuario.getFechaSalida());
+            model.addAttribute("codigo", usuario.getCodigo());
+            model.addAttribute("fecha_entrada", usuario.getFechaInicio());
+            model.addAttribute("fecha_salida", usuario.getFechaFin());
+            model.addAttribute("tiposusuario_nombre", tipoUsuarioRepository.darTiposUsuario());
+            model.addAttribute("planesconsumo_nombre", planConsumoRepository.darPlanesConsumo());
             return "usuarioEditar";
         
         }
@@ -69,7 +75,7 @@ public class UsuarioController{
 
     @PostMapping("/usuarios/{numero_documento}/edit/save")
     public String usuarioEditarGuardar(@PathVariable("numero_documento") Integer numero_documento, @ModelAttribute Usuario usuario){
-        usuarioRepository.actualizarUsuario(numero_documento, usuario.getTipoUsuario().getNombre(), usuario.getPlanConsumo().getNombre(), usuario.getEmail(), usuario.getTipoDocumento(), usuario.getNombre(), usuario.getFechaEntrada(), usuario.getFechaSalida());
+        usuarioRepository.actualizarUsuario(numero_documento, usuario.getTipoDocumento(), usuario.getEmail(), usuario.getNombre(), usuario.getFechaEntrada(), usuario.getFechaSalida(), usuario.getCodigo(), usuario.getFechaInicio(), usuario.getFechaFin(), usuario.getCheckIn(), usuario.getCheckOut(), usuario.getTipoUsuario().getNombre(), usuario.getPlanConsumo().getNombre());
         return "redirect:/usuarios";
     }
 

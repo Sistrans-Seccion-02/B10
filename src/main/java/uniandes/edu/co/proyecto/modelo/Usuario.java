@@ -13,32 +13,46 @@ import jakarta.persistence.Table;
 public class Usuario {
     @Id
     private Integer numero_documento;
-    private String email;
     private String tipo_documento;
+    private String email;
     private String nombre;
     private Date fecha_entrada;
     private Date fecha_salida;
+    private Date fecha_inicio;
+    private Date fecha_fin;
+    private Boolean check_in;
+    private Boolean check_out;
+    private Integer codigo;
 
 
     @OneToOne
-    @JoinColumn(name = "tipo_usuario", referencedColumnName = "nombre")
+    @JoinColumn(name = "tiposusuario_nombre", referencedColumnName = "nombre")
     private TipoUsuario tipoUsuario;
 
     @OneToOne
-    @JoinColumn(name = "plan_consumo", referencedColumnName = "nombre")
+    @JoinColumn(name = "planesconsumo_nombre", referencedColumnName = "nombre")
     private PlanConsumo planConsumo;
 
 
-    public Usuario(Integer numero_documento, TipoUsuario tipo_usuario, PlanConsumo plan_consumo, String email, String tipo_documento, String nombre, Date fecha_entrada, Date fecha_salida)
+    public Usuario(Integer numero_documento, TipoUsuario tiposusuario_nombre, PlanConsumo planesconsumo_nombre, Integer codigo, Date fecha_inicio, Date fecha_fin, Boolean check_in, Boolean check_out, String email, String tipo_documento, String nombre, Date fecha_entrada, Date fecha_salida)
     {
         this.numero_documento = numero_documento;
-        this.tipoUsuario = tipo_usuario;
-        this.planConsumo = plan_consumo;
-        this.email = email;
         this.tipo_documento = tipo_documento;
+        this.email = email;
         this.nombre = nombre;
         this.fecha_entrada = fecha_entrada;
         this.fecha_salida = fecha_salida;
+        this.codigo=codigo;
+        this.fecha_inicio=fecha_inicio;
+        this.fecha_fin=fecha_fin;
+        this.check_in=check_in;
+        this.check_out=check_out;
+        this.tipoUsuario = tiposusuario_nombre;
+        this.planConsumo = planesconsumo_nombre;
+
+
+        
+        
     }
 
     public Usuario()
@@ -56,16 +70,16 @@ public class Usuario {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(TipoUsuario tipo_usuario) {
-        this.tipoUsuario = tipo_usuario;
+    public void setTipoUsuario(TipoUsuario tiposusuario_nombre) {
+        this.tipoUsuario = tiposusuario_nombre;
     }
 
     public PlanConsumo getPlanConsumo() {
         return planConsumo;
     }
 
-    public void setPlanConsumo(PlanConsumo plan_consumo) {
-        this.planConsumo = plan_consumo;
+    public void setPlanConsumo(PlanConsumo planesconsumo_nombre) {
+        this.planConsumo = planesconsumo_nombre;
     }
 
     public String getEmail() {
@@ -107,8 +121,43 @@ public class Usuario {
     public void setFechaSalida(Date fecha_salida) {
         this.fecha_salida = fecha_salida;
     }
-    
 
+        public Date getFechaInicio() {
+        return fecha_inicio;
+    }
 
+    public void setFechaInicio(Date fecha_inicio) {
+        this.fecha_inicio = fecha_inicio;
+    }
+
+    public Date getFechaFin() {
+        return fecha_fin;
+    }
+
+    public void setFechaFin(Date fecha_fin) {
+        this.fecha_fin = fecha_fin;
+    }
     
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+    public Boolean getCheckIn() {
+        return check_in;
+    }
+
+    public void setCheckIn(Boolean check_in) {
+        this.check_in = check_in;
+    }
+    public Boolean getCheckOut() {
+        return check_out;
+    }
+
+    public void setCheckOut(Boolean check_out) {
+        this.check_out = check_out;
+    }
 }
