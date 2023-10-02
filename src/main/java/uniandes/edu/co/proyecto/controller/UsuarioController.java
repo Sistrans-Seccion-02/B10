@@ -35,8 +35,6 @@ public class UsuarioController{
     @GetMapping("/usuarios/new")
     public String usuarioForm(Model model){
             model.addAttribute("usuario", new Usuario());
-            model.addAttribute("tiposusuario_nombre", tipoUsuarioRepository.darTiposUsuario());
-            model.addAttribute("planesconsumo_nombre", planConsumoRepository.darPlanesConsumo());
         return "usuarioNuevo";
     }
 
