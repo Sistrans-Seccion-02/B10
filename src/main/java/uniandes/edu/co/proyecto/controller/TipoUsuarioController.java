@@ -40,7 +40,7 @@ public class TipoUsuarioController{
     public String tipoUsuarioEditarForm(@PathVariable("nombre") String nombre, Model model) {
         TipoUsuario tipoUsuario = tipoUsuarioRepository.darTipoUsuario(nombre);
         if(tipoUsuario != null) {
-            model.addAttribute("tipousuario");
+            model.addAttribute("tipousuario", tipoUsuario);
             return "tipousuarioEditar";
         
         }
@@ -50,4 +50,15 @@ public class TipoUsuarioController{
 
     }
 
+        @PostMapping("/tiposusuario/{nombre}/edit/save")
+    public String tipoUsuarioEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute TipoUsuario tipousuario){
+        tipoUsuarioRepository.actualizarTipoUsuario(nombre, tipousuario.getDescripcion());
+        return "redirect:/tiposusuario";
+    }
+
+    @GetMapping("/tiposusuario/{nombre}/delete")
+    public String tipoUsuarioBorrar(@PathVariable("nombre") String nombre) {
+        tipoUsuarioRepository.eliminarTipoUsuario(nombre);
+        return "redirect:/tiposusuario";
+    }
 }

@@ -40,7 +40,7 @@ public class PlanConsumoController{
     public String planConsumoEditarForm(@PathVariable("nombre") String nombre, Model model) {
         PlanConsumo planConsumo = planConsumoRepository.darPlanConsumo(nombre);
         if(planConsumo != null) {
-            model.addAttribute("planconsumo");
+            model.addAttribute("planconsumo", planConsumo);
             return "planconsumoEditar";
         
         }
@@ -49,5 +49,18 @@ public class PlanConsumoController{
         }
 
     }
+
+    @PostMapping("/planesconsumo/{nombre}/edit/save")
+    public String planConsumoEditarGuardar(@PathVariable("nombre") String nombre, @ModelAttribute PlanConsumo planConsumo){
+        planConsumoRepository.actualizarPlanConsumo(nombre, planConsumo.getDescripcion());
+        return "redirect:/planesconsumo";
+    }
+
+    @GetMapping("/planesconsumo/{nombre}/delete")
+    public String planConsumoBorrar(@PathVariable("nombre") String nombre) {
+        planConsumoRepository.eliminarPlanConsumo(nombre);
+        return "redirect:/planesconsumo";
+    }
+
 
 }

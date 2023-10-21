@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import uniandes.edu.co.proyecto.modelo.Habitacion;
 import uniandes.edu.co.proyecto.modelo.Usuario;
 import uniandes.edu.co.proyecto.repositorio.UsuarioRepository;
 import uniandes.edu.co.proyecto.repositorio.TipoUsuarioRepository;
@@ -35,6 +33,8 @@ public class UsuarioController{
     @GetMapping("/usuarios/new")
     public String usuarioForm(Model model){
             model.addAttribute("usuario", new Usuario());
+            model.addAttribute("tiposusuario_nombre", tipoUsuarioRepository.darTiposUsuario());
+            model.addAttribute("planesconsumo_nombre", planConsumoRepository.darPlanesConsumo());
         return "usuarioNuevo";
     }
 
