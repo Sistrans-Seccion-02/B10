@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Lista de Servicios</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Costo</th>
+                </tr>
+            </thead>
+            <th:block th:each="servicio:${servicios}">
+                <tr>
+                    <td th:text="${servicio.nombre}"></td>
+                    <td th:text="${servicio.descripcion}"></td>
+                    <td th:text="${servicio.costo}"></td>
+                    <td>
+                        <a th:href="@{servicios/{nombre}/edit(nombre=${servicio.nombre})}">Editar</a>
+                        <a th:href="@{servicios/{nombre}/delete(nombre=${servicio.nombre})}"
+                        onclick="return confirm('¿Está seguro que desea eliminar este servicio?')">Borrar</a>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+        <div>
+            <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+            <a th:href="@{servicios/new}" class="btn btn-primary">Añadir servicio</a>
+        </div>
+    </div>
+    
+</body>
+</html>

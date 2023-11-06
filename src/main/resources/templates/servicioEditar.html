@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar piscina</title>
+    <title>Editar Servicio</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
-    <form th:action="@{'/piscinas/'+${id_servicio}+'/edit/save'}" th:object th:object="${piscina}"
+    <form th:action="@{'/servicios/'+${nombre}+'/edit/save'}" th:object th:object="${servicio}"
     method="post">
-    <div th:replace="~{fragments/piscinaForm :: piscinaForm(titulo='Editar piscina', piscina=${piscina})}">
+    <div th:replace="~{fragments/servicioForm :: servicioForm(titulo='Editar servicio', servicio=${servicio})}">
         
     </div>
 </form>

@@ -51,7 +51,7 @@ public class PiscinaController {
 
     @PostMapping("/piscinas/{id_servicio}/edit/save")
     public String piscinaEditarGuardar(@PathVariable("id_servicio") int id_servicio, @ModelAttribute Piscina piscina){
-        piscinaRepository.actulizarPiscina(id_servicio, piscina.getHorario(), piscina.getCapacidad(), piscina.getProfundidad());
+        piscinaRepository.actualizarPiscina(id_servicio, piscina.getHorario(), piscina.getCapacidad(), piscina.getProfundidad());
         return "redirect:/piscinas";
     }
 

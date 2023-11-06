@@ -20,13 +20,14 @@ public interface PiscinaRepository extends JpaRepository<Piscina, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO piscinas (horario, capacidad, profundidad) VALUES (:horario, :capacidad, :profundidad)", nativeQuery = true)
+    @Query(value = "INSERT INTO piscinas (id_servicio, horario, capacidad, profundidad) VALUES (hotel_sequence.nextval, :horario, :capacidad, :profundidad)", nativeQuery = true)
     void insertarPiscina(@Param("horario") String horario, @Param("capacidad") Integer capacidad, @Param("profundidad") Integer profundidad);
+    
 
     @Modifying
     @Transactional
     @Query(value = "UPDATE piscinas SET horario=:horario, capacidad=:capacidad, profundidad=:profundidad WHERE id_servicio = :id_servicio", nativeQuery = true)
-    void actulizarPiscina(@Param("id_servicio") int id_servicio, @Param("horario") String horario, @Param("capacidad") Integer capacidad, @Param("profundidad") Integer profundidad);
+    void actualizarPiscina(@Param("id_servicio") int id_servicio, @Param("horario") String horario, @Param("capacidad") Integer capacidad, @Param("profundidad") Integer profundidad);
 
     @Modifying
     @Transactional

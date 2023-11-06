@@ -10,29 +10,29 @@ import uniandes.edu.co.proyecto.modelo.Servicio;
 
 import java.util.*;
 
-//En esta parte falta tomar en cuenta el atributo de Consumos_numero_factura que es FK de la PK de la clase Consumo
 
-public interface ServicioRepository extends JpaRepository<Servicio, Integer>{
+
+public interface ServicioRepository extends JpaRepository<Servicio, String>{
 
     @Query(value = "SELECT * FROM servicios", nativeQuery = true)
     Collection<Servicio> darServicios();
 
-    @Query(value = "SELECT * FROM servicios WHERE id = :id", nativeQuery = true)
-    Servicio darServicio(@Param("id") int id);
+    @Query(value = "SELECT * FROM servicios WHERE nombre = :nombre", nativeQuery = true)
+    Servicio darServicio(@Param("nombre") String nombre);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO servicios (nombre, descripcion) VALUES (:nombre, :descripcion)", nativeQuery = true)
-    void insertarServicio(@Param("nombre") String nombre, @Param("descripcion") String descripcion);
+    @Query(value = "INSERT INTO servicios (nombre, descripcion, costo) VALUES (:nombre, :descripcion, :costo)", nativeQuery = true)
+    void insertarServicio(@Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("costo") Integer costo);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE servicios SET nombre=:nombre, descripcion=:descripcion WHERE id = :id", nativeQuery = true)
-    void actualizarServicio(@Param("id") int id, @Param("nombre") String nombre, @Param("descripcion") String descripcion);
+    @Query(value = "UPDATE servicios SET descripcion=:descripcion, costo=:costo WHERE nombre = :nombre", nativeQuery = true)
+    void actualizarServicio(@Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("costo") Integer costo);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM servicios WHERE id = :id", nativeQuery = true)
-    void eliminarServicio(@Param("id") int id);
+    @Query(value = "DELETE FROM servicios WHERE nombre = :nombre", nativeQuery = true)
+    void eliminarServicio(@Param("nombre") String nombre);
     
 }
