@@ -18,11 +18,7 @@ public class Usuario {
     private String nombre;
     private Date fecha_entrada;
     private Date fecha_salida;
-    private Date fecha_inicio;
-    private Date fecha_fin;
-    private Boolean check_in;
-    private Boolean check_out;
-    private Integer codigo;
+
 
 
     @OneToOne
@@ -34,7 +30,7 @@ public class Usuario {
     private PlanConsumo planConsumo;
 
 
-    public Usuario(Integer numero_documento, TipoUsuario tiposusuario_nombre, PlanConsumo planesconsumo_nombre, Integer codigo, Date fecha_inicio, Date fecha_fin, Boolean check_in, Boolean check_out, String email, String tipo_documento, String nombre, Date fecha_entrada, Date fecha_salida)
+    public Usuario(Integer numero_documento, TipoUsuario tiposusuario_nombre, PlanConsumo planesconsumo_nombre, String email, String tipo_documento, String nombre, Date fecha_entrada, Date fecha_salida)
     {
         this.numero_documento = numero_documento;
         this.tipo_documento = tipo_documento;
@@ -42,15 +38,8 @@ public class Usuario {
         this.nombre = nombre;
         this.fecha_entrada = fecha_entrada;
         this.fecha_salida = fecha_salida;
-        this.codigo=codigo;
-        this.fecha_inicio=fecha_inicio;
-        this.fecha_fin=fecha_fin;
-        this.check_in=check_in;
-        this.check_out=check_out;
         this.tipoUsuario = tiposusuario_nombre;
         this.planConsumo = planesconsumo_nombre;
-
-
     }
 
     public Usuario()
@@ -88,11 +77,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getTipoDocumento() {
+    public String getTipo_Documento() {
         return tipo_documento;
     }
 
-    public void setTipoDocumento(String tipo_documento) {
+    public void setTipo_Documento(String tipo_documento) {
         this.tipo_documento = tipo_documento;
     }
 
@@ -120,42 +109,6 @@ public class Usuario {
         this.fecha_salida = fecha_salida;
     }
 
-        public Date getFechaInicio() {
-        return fecha_inicio;
-    }
+       
 
-    public void setFechaInicio(Date fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
-    }
-
-    public Date getFechaFin() {
-        return fecha_fin;
-    }
-
-    public void setFechaFin(Date fecha_fin) {
-        this.fecha_fin = fecha_fin;
-    }
-    
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
-    public Boolean getCheckIn() {
-        return check_in;
-    }
-
-    public void setCheckIn(Boolean check_in) {
-        this.check_in = check_in;
-    }
-    public Boolean getCheckOut() {
-        return check_out;
-    }
-
-    public void setCheckOut(Boolean check_out) {
-        this.check_out = check_out;
-    }
 }

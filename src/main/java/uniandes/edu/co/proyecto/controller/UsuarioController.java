@@ -42,7 +42,7 @@ public class UsuarioController{
     @PostMapping("/usuarios/new/save")
     public String usuarioGuardar(@ModelAttribute Usuario usuario){
         usuarioRepository.insertarUsuario(
-            usuario.getNumero_documento(), usuario.getTipoDocumento(), usuario.getEmail(), usuario.getNombre(), usuario.getFechaEntrada(), usuario.getFechaSalida(), usuario.getCodigo(), usuario.getFechaInicio(), usuario.getFechaFin(), usuario.getCheckIn(), usuario.getCheckOut(), usuario.getTipoUsuario().getNombre(), usuario.getPlanConsumo().getNombre());
+            usuario.getNumero_documento(), usuario.getTipo_Documento(), usuario.getEmail(), usuario.getNombre(), usuario.getFechaEntrada(), usuario.getFechaSalida(), usuario.getTipoUsuario().getNombre(), usuario.getPlanConsumo().getNombre());
         return "redirect:/usuarios";
     }
 
@@ -51,14 +51,11 @@ public class UsuarioController{
         Usuario usuario = usuarioRepository.darUsuario(numero_documento);
         if(usuario != null) {
             model.addAttribute("usuario", usuario);
-            model.addAttribute("tipo_documento", usuario.getTipoDocumento());
+            model.addAttribute("tipo_documento", usuario.getTipo_Documento());
             model.addAttribute("email", usuario.getEmail());
             model.addAttribute("nombre", usuario.getNombre());
             model.addAttribute("fecha_entrada", usuario.getFechaEntrada());
             model.addAttribute("fecha_salida", usuario.getFechaSalida());
-            model.addAttribute("codigo", usuario.getCodigo());
-            model.addAttribute("fecha_entrada", usuario.getFechaInicio());
-            model.addAttribute("fecha_salida", usuario.getFechaFin());
             model.addAttribute("tiposusuario_nombre", tipoUsuarioRepository.darTiposUsuario());
             model.addAttribute("planesconsumo_nombre", planConsumoRepository.darPlanesConsumo());
             return "usuarioEditar";
@@ -73,7 +70,7 @@ public class UsuarioController{
 
     @PostMapping("/usuarios/{numero_documento}/edit/save")
     public String usuarioEditarGuardar(@PathVariable("numero_documento") Integer numero_documento, @ModelAttribute Usuario usuario){
-        usuarioRepository.actualizarUsuario(numero_documento, usuario.getTipoDocumento(), usuario.getEmail(), usuario.getNombre(), usuario.getFechaEntrada(), usuario.getFechaSalida(), usuario.getCodigo(), usuario.getFechaInicio(), usuario.getFechaFin(), usuario.getCheckIn(), usuario.getCheckOut(), usuario.getTipoUsuario().getNombre(), usuario.getPlanConsumo().getNombre());
+        usuarioRepository.actualizarUsuario(numero_documento, usuario.getTipo_Documento(), usuario.getEmail(), usuario.getNombre(), usuario.getFechaEntrada(), usuario.getFechaSalida(), usuario.getTipoUsuario().getNombre(), usuario.getPlanConsumo().getNombre());
         return "redirect:/usuarios";
     }
 
