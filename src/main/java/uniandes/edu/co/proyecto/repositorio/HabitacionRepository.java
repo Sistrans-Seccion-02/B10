@@ -13,6 +13,11 @@ import uniandes.edu.co.proyecto.modelo.Habitacion;
 
 public interface HabitacionRepository extends JpaRepository<Habitacion,Integer>{
 
+    public interface RespuestaFechasMayorOcupacion {
+        String getFECHAINICIO();
+        int getOCUPACION();      
+    }
+
     @Query(value = "SELECT * FROM habitaciones", nativeQuery = true)
     Collection<Habitacion> darHabitaciones();
 
@@ -37,5 +42,7 @@ public interface HabitacionRepository extends JpaRepository<Habitacion,Integer>{
     @Transactional
     @Query(value = "DELETE FROM habitaciones WHERE numero=:numero", nativeQuery = true)
     void eliminarHabitacion(@Param("numero") Integer numero);
+
+
     
 }

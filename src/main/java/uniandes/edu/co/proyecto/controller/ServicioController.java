@@ -31,6 +31,10 @@ public class ServicioController {
         {
             model.addAttribute("servicios", servicioRepository.dar20Servicios());
         }
+        else if (RF.equals("8"))
+        {
+            model.addAttribute("servicios", servicioRepository.darServiciosMenos3VecesSemanales());
+        }
         else
         {
             model.addAttribute("servicios", servicioRepository.darServicios());

@@ -42,4 +42,15 @@ public interface ServicioRepository extends JpaRepository<Servicio, String>{
                   "GROUP BY Servicios.nombre ORDER BY COUNT(Reserva_Servicio.fecha_reserva) DESC FETCH FIRST 20 ROWS ONLY) ", nativeQuery=true)
     Collection<Servicio> dar20Servicios();
 
+    //RF8
+    @Query(value= "SELECT servicios.* FROM servicios WHERE servicios.nombre IN \r\n" + //
+                  "(SELECT s.nombre FROM Servicios s INNER JOIN reserva_servicio rs ON s.nombre = rs.servicios_nombre \r\n" + //
+                  " WHERE rs.fecha_reserva >= TRUNC(SYSDATE - 365) \r\n" + //
+                  "GROUP BY s.nombre HAVING COUNT(*) < 3) ", nativeQuery=true)
+    Collection<Servicio> darServiciosMenos3VecesSemanales();
+
+    
+
+
+
 }
