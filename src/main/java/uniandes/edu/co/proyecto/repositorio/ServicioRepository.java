@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.Servicio;
 
+
 import java.util.*;
 
 
@@ -35,4 +36,10 @@ public interface ServicioRepository extends JpaRepository<Servicio, String>{
     @Query(value = "DELETE FROM servicios WHERE nombre = :nombre", nativeQuery = true)
     void eliminarServicio(@Param("nombre") String nombre);
     
+
+    @Query(value= "SELECT servicios.* FROM servicios WHERE servicios.nombre IN  \r\n" + //
+                  "(SELECT Servicios.nombre FROM Servicios INNER JOIN Reserva_Servicio ON Servicios.nombre = Reserva_Servicio.Servicios_Nombre \r\n" + //
+                  "GROUP BY Servicios.nombre ORDER BY COUNT(Reserva_Servicio.fecha_reserva) DESC FETCH FIRST 20 ROWS ONLY) ", nativeQuery=true)
+    Collection<Servicio> dar20Servicios();
+
 }

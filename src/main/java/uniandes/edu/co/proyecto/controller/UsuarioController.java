@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +27,32 @@ public class UsuarioController{
     private PlanConsumoRepository planConsumoRepository;
 
     @GetMapping("/usuarios")
-    public String usuarios(Model model){
-        model.addAttribute("usuarios", usuarioRepository.darUsuarios());
+    public String usuarios(Model model, String RF, String servicio, String fechaInicio, String fechaFin){
+
+        if( RF == null || RF.equals(""))
+        {
+            model.addAttribute("usuarios", usuarioRepository.darUsuarios());
+        }
+        else if ((RF.equals("7")))
+        {
+            model.addAttribute("usuarios", usuarioRepository.darBuenosClientes());
+        }
+        else if((RF.equals("9")))
+        {
+            model.addAttribute("usuarios", usuarioRepository.darUsuariosPorConsumo(servicio, fechaInicio, fechaFin));
+        }
+        else if(RF.equals("10"))
+        {
+            model.addAttribute("usuarios", usuarioRepository.darNoUsuariosPorConsumo(servicio, fechaInicio, fechaFin));
+        }
+        else
+        {
+            model.addAttribute("usuarios", usuarioRepository.darUsuarios());
+        }
+
+
         return "usuarios";
+        
     }
 
     @GetMapping("/usuarios/new")

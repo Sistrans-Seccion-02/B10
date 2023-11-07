@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +16,27 @@ import uniandes.edu.co.proyecto.repositorio.ServicioRepository;
 
 @Controller
 public class ServicioController {
-
+    
     @Autowired
     private ServicioRepository servicioRepository;
 
     @GetMapping("/servicios")
-    public String servicios(Model model){
-        model.addAttribute("servicios", servicioRepository.darServicios());
+    public String servicios(Model model, String RF){
+
+        if( RF == null || RF.equals(""))
+        {
+            model.addAttribute("servicios", servicioRepository.darServicios());
+        }
+        else if (RF.equals("2"))
+        {
+            model.addAttribute("servicios", servicioRepository.dar20Servicios());
+        }
+        else
+        {
+            model.addAttribute("servicios", servicioRepository.darServicios());
+        }
+
+        
         return "servicios";
     }
 

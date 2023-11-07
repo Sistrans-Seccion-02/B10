@@ -5,10 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/css/jquery.min.js}"></script>
+    <script th:src="@{/css/bootstrap.min.js}"></script>
 </head>
 <body>
     <div>
         <h1>Lista de Usuarios</h1>
+
+        <p>
+            <div class="container w-25">
+                <div class="card border border-2 mx-auto">
+                    <h5 class="card-header" role="button" id="headingOne">
+                        <a href="#" class="collapsed d-block" data-toggle="collapse" data-target="#busqueda">
+                            Búsqueda avanzada
+                        </a>
+                    </h5>
+                    <div id="busqueda" class="collapse">
+                        <form th:action="@{usuarios}" method="get">
+                            <label class="col-form-label">RF:</label>
+                            <input class="form-control" type="text" id="RF" name="RF"/>
+
+                            <label class="col-form-label">Servicio:</label>
+                            <input class="form-control" type="text" id="servicio" name="servicio"/>
+
+                            <label class="col-form-label">Fecha de Inicio:</label>
+                            <input class="form-control" type="text" id="fechaInicio" name="fechaInicio"/>
+
+                            <label class="col-form-label">Fecha de Fin:</label>
+                            <input class="form-control" type="text" id="fechaFin" name="fechaFin"/>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-secondary">buscar RF</button>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </p>
+
+
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
                 <tr>
