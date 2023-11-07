@@ -21,7 +21,7 @@ public class ServicioController {
     private ServicioRepository servicioRepository;
 
     @GetMapping("/servicios")
-    public String servicios(Model model, String RF){
+    public String servicios(Model model, String RF, String servicio, String fechaInicio, String fechaFin){
 
         if( RF == null || RF.equals(""))
         {
@@ -30,6 +30,10 @@ public class ServicioController {
         else if (RF.equals("2"))
         {
             model.addAttribute("servicios", servicioRepository.dar20Servicios());
+        }
+        else if (RF.equals("4"))
+        {
+            model.addAttribute("servicios", servicioRepository.darServicioPorCondicion(servicio, fechaInicio, fechaFin));
         }
         else if (RF.equals("8"))
         {

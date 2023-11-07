@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.Servicio;
-
+import uniandes.edu.co.proyecto.modelo.Usuario;
 
 import java.util.*;
 
@@ -49,8 +49,12 @@ public interface ServicioRepository extends JpaRepository<Servicio, String>{
                   "GROUP BY s.nombre HAVING COUNT(*) < 3) ", nativeQuery=true)
     Collection<Servicio> darServiciosMenos3VecesSemanales();
 
-    
-
+    //RF4
+     @Query(value= "SELECT servicios.*  \r\n" + //
+                  "FROM servicios INNER JOIN reserva_servicio ON servicios.nombre = reserva_servicio.servicios_nombre \r\n" + //
+                  "WHERE servicios.nombre = :servicio AND reserva_servicio.fecha_reserva BETWEEN TO_DATE(:fechaInicio, 'YYYY-MM-DD') AND TO_DATE(:fechaFin, 'YYYY-MM-DD') ", nativeQuery=true)
+    Collection<Servicio> darServicioPorCondicion(@Param("servicio") String servicio, @Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin);
+     
 
 
 }
