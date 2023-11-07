@@ -54,7 +54,16 @@ public interface ServicioRepository extends JpaRepository<Servicio, String>{
                   "FROM servicios INNER JOIN reserva_servicio ON servicios.nombre = reserva_servicio.servicios_nombre \r\n" + //
                   "WHERE servicios.costo > :costoIni AND servicios.costo < :costoFin AND servicios.nombre = :servicio AND reserva_servicio.fecha_reserva BETWEEN TO_DATE(:fechaInicio, 'YYYY-MM-DD') AND TO_DATE(:fechaFin, 'YYYY-MM-DD') ", nativeQuery=true)
     Collection<Servicio> darServicioPorCondicion(@Param("costoIni") Integer costoIni, @Param("costoFin") Integer costoFin, @Param("servicio") String servicio, @Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin);
-     
+
+    //RF5
+    
+    @Query(value= "SELECT DISTINCT servicios.*  \r\n" + //
+                    "FROM Servicios INNER JOIN Reserva_Servicio ON Reserva_Servicio.SERVICIOS_NOMBRE = Servicios.nombre "+
+                    "INNER JOIN Habitaciones ON Reserva_Servicio.Habitaciones_numero = Habitaciones.numero "+
+                    "INNER JOIN Reserva_Habitacion ON Reserva_Habitacion.Habitaciones_numero = Habitaciones.numero "+
+                    "INNER JOIN Usuarios ON Usuarios.numero_documento = Reserva_Habitacion.Usuarios_numero_documento "+
+                    "WHERE Usuarios.numero_documento =  :documento AND (reserva_servicio.fecha_reserva BETWEEN TO_DATE(:fechaInicio, 'YYYY-MM-DD') AND TO_DATE(:fechaFin, 'YYYY-MM-DD')) ", nativeQuery=true)
+    Collection<Servicio> darConumosClienteFechas(@Param("documento") int documento, @Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin);
 
 
 }
