@@ -56,6 +56,21 @@ public interface HabitacionRepository extends JpaRepository<Habitacion,Integer>{
                 "WHERE ranking > (SELECT COUNT(DISTINCT habitaciones_numero) - 52 FROM reserva_habitacion)) ", nativeQuery = true)
     Collection<Habitacion> darHabitacionesMenosOcupadasSemana();
 
+    //6.2
+    @Query(value= "SELECT h.* FROM habitaciones h "+
+                    "WHERE h.numero IN (SELECT rh.habitaciones_numero "+
+                    "FROM reserva_habitacion rh GROUP BY rh.habitaciones_numero "+
+                    "ORDER BY COUNT(*) DESC FETCH FIRST 5 ROWS ONLY) ", nativeQuery=true)
+    Collection<Habitacion> darHabitacionesMasRecaudaron();
+
+
+    //6.3
+    @Query(value= "SELECT h.* FROM habitaciones h "+
+                    "WHERE h.numero IN (SELECT rh.habitaciones_numero "+
+                    "FROM reserva_habitacion rh GROUP BY rh.habitaciones_numero "+
+                    "ORDER BY COUNT(*) ASC FETCH FIRST 5 ROWS ONLY) ", nativeQuery=true)
+    Collection<Habitacion> darHabitacionesMenosRecaudaron();
+
 
     
 }

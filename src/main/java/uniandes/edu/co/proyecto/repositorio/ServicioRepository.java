@@ -71,6 +71,17 @@ public interface ServicioRepository extends JpaRepository<Servicio, String>{
                     "WHERE Usuarios.numero_documento =  :documento AND (reserva_servicio.fecha_reserva BETWEEN TO_DATE(:fechaInicio, 'YYYY-MM-DD') AND TO_DATE(:fechaFin, 'YYYY-MM-DD')) ", nativeQuery=true)
     Collection<Servicio> darConumosClienteFechas(@Param("documento") int documento, @Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin);
 
+    //RF6.1
+
+    @Query(value= "SELECT s.*FROM servicios s "+
+                    "WHERE s.nombre IN (SELECT servicios_nombre "+
+                    "FROM (SELECT rs.servicios_nombre "+
+                    "FROM reserva_servicio rs "+
+                    "INNER JOIN servicios ON rs.servicios_nombre = servicios.nombre "+
+                    "GROUP BY rs.servicios_nombre "+
+                    "ORDER BY SUM(servicios.costo) DESC) WHERE ROWNUM <= 5) ", nativeQuery=true)
+    Collection<Servicio> darConsumosMasRecaudaron();
+
 
     //RF11.1
     @Query(value= "SELECT s.* FROM servicios s " +
