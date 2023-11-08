@@ -57,6 +57,13 @@ public class UsuarioController{
             long endTime = System.currentTimeMillis();
             System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
+        else if(RF.equals("12"))
+        {
+            long startTime = System.currentTimeMillis();
+            model.addAttribute("usuarios", usuarioRepository.darExcelentesClientes());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+        }
         else
         {
             long startTime = System.currentTimeMillis();

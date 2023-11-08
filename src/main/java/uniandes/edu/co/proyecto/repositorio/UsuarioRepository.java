@@ -62,4 +62,15 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
                   "WHERE servicios.nombre = :servicio AND reserva_servicio.fecha_reserva BETWEEN TO_DATE(:fechaInicio, 'YYYY-MM-DD') AND TO_DATE(:fechaFin, 'YYYY-MM-DD')) ", nativeQuery=true)
     Collection<Usuario> darNoUsuariosPorConsumo(@Param("servicio") String servicio, @Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin);
 
+    @Query(value= "SELECT DISTINCT usuarios.* \r\n" + //
+                    "FROM usuarios, reserva_habitacion, reserva_servicio, habitaciones, servicios \r\n" + //
+                    "WHERE usuarios.numero_documento = reserva_habitacion.usuarios_numero_documento \r\n" + //
+                    "AND habitaciones.numero = reserva_habitacion.habitaciones_numero \r\n" + //
+                    "AND habitaciones.numero = reserva_servicio.habitaciones_numero \r\n" + //
+                    "AND reserva_servicio.servicios_nombre = servicios.nombre \r\n" + //
+                    "AND servicios.costo > 300000 \r\n" + //
+                    "ORDER BY usuarios.numero_documento", nativeQuery=true)
+       Collection<Usuario> darExcelentesClientes();
+
+
 }
