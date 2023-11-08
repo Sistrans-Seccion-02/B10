@@ -66,4 +66,27 @@ public interface ServicioRepository extends JpaRepository<Servicio, String>{
     Collection<Servicio> darConumosClienteFechas(@Param("documento") int documento, @Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin);
 
 
+    //RF11.1
+    @Query(value= "SELECT s.* FROM servicios s " +
+                    "WHERE s.nombre = (SELECT MAX(servicios_nombre) KEEP (DENSE_RANK FIRST ORDER BY num_consumos DESC) AS servicio_mas_consumido "+
+                    "FROM (SELECT rs.servicios_nombre, COUNT(*) AS num_consumos " +
+                    "FROM reserva_servicio rs " +
+                    "INNER JOIN calendario c ON rs.fecha_reserva = c.fecha " +
+                    "WHERE s.nombre = rs.servicios_nombre " +
+                    "GROUP BY rs.servicios_nombre, c.numero_semana)) FETCH FIRST 52 ROWS ONLY ", nativeQuery = true)
+    Collection<Servicio> darServiciosMasConsumidoSemana();
+
+    //RF11.2
+    @Query(value= "SELECT s.* FROM servicios s "+
+                    "WHERE s.nombre = (SELECT MAX(servicios_nombre) KEEP (DENSE_RANK FIRST ORDER BY num_consumos DESC) AS servicio_mas_consumido "+
+                    "FROM ( SELECT rs.servicios_nombre, COUNT(*) AS num_consumos "+
+                    "FROM reserva_servicio rs "+
+                    "INNER JOIN calendario c ON rs.fecha_reserva = c.fecha "+
+                    "WHERE s.nombre = rs.servicios_nombre "+
+                    "GROUP BY rs.servicios_nombre, c.numero_semana)) ORDER BY s.rowid DESC FETCH FIRST 52 ROWS ONLY ", nativeQuery = true)
+    Collection<Servicio> darServiciosMenosConsumidoSemana();
+    
+    
+
+
 }

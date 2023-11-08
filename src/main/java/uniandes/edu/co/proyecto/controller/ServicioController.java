@@ -58,6 +58,20 @@ public class ServicioController {
             long endTime = System.currentTimeMillis();
             System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
+        else if (RF.equals("11.1"))
+        {
+            long startTime = System.currentTimeMillis();
+            model.addAttribute("servicios", servicioRepository.darServiciosMasConsumidoSemana());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+        }
+        else if (RF.equals("11.2"))
+        {
+            long startTime = System.currentTimeMillis();
+            model.addAttribute("servicios", servicioRepository.darServiciosMenosConsumidoSemana());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+        }
         else
         {
             long startTime = System.currentTimeMillis();

@@ -13,10 +13,6 @@ import uniandes.edu.co.proyecto.modelo.Habitacion;
 
 public interface HabitacionRepository extends JpaRepository<Habitacion,Integer>{
 
-    public interface RespuestaFechasMayorOcupacion {
-        String getFECHAINICIO();
-        int getOCUPACION();      
-    }
 
     @Query(value = "SELECT * FROM habitaciones", nativeQuery = true)
     Collection<Habitacion> darHabitaciones();
@@ -42,6 +38,23 @@ public interface HabitacionRepository extends JpaRepository<Habitacion,Integer>{
     @Transactional
     @Query(value = "DELETE FROM habitaciones WHERE numero=:numero", nativeQuery = true)
     void eliminarHabitacion(@Param("numero") Integer numero);
+
+    //RF11.3
+    @Query(value= "SELECT h.* FROM habitaciones h "+
+                    "WHERE h.numero IN (SELECT habitaciones_numero "+
+                    "FROM (SELECT rh.habitaciones_numero, RANK() OVER (ORDER BY COUNT(*) DESC) AS ranking "+
+                    "FROM reserva_habitacion rh "+
+                    "INNER JOIN calendario c ON rh.fecha_inicio <= c.fecha AND rh.fecha_fin >= c.fecha "+
+                    "GROUP BY rh.habitaciones_numero)WHERE ranking < 52) ", nativeQuery = true)
+    Collection<Habitacion> darHabitacionesMasOcupadasSemana();
+
+    @Query(value= "SELECT h.* FROM habitaciones h WHERE h.numero IN (SELECT habitaciones_numero "+
+                "FROM (SELECT rh.habitaciones_numero, RANK() OVER (ORDER BY COUNT(*) DESC) AS ranking "+
+                "FROM reserva_habitacion rh "+
+                "INNER JOIN calendario c ON rh.fecha_inicio <= c.fecha AND rh.fecha_fin >= c.fecha "+
+                "GROUP BY rh.habitaciones_numero) "+
+                "WHERE ranking > (SELECT COUNT(DISTINCT habitaciones_numero) - 52 FROM reserva_habitacion)) ", nativeQuery = true)
+    Collection<Habitacion> darHabitacionesMenosOcupadasSemana();
 
 
     

@@ -22,8 +22,35 @@ public class HabitacionController {
     private TipoHabitacionRepository tipoHabitacionRepository;
 
     @GetMapping("/habitaciones")
-    public String habitaciones(Model model){
-        model.addAttribute("habitaciones", habitacionRepository.darHabitaciones());
+    public String habitaciones(Model model, String RF){
+        if( RF == null || RF.equals(""))
+        {
+            long startTime = System.currentTimeMillis();
+            model.addAttribute("habitaciones", habitacionRepository.darHabitaciones());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+        }
+        else if (RF.equals("11.3"))
+        {
+            long startTime = System.currentTimeMillis();
+            model.addAttribute("habitaciones", habitacionRepository.darHabitacionesMasOcupadasSemana());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+        }
+        else if (RF.equals("11.4"))
+        {
+            long startTime = System.currentTimeMillis();
+            model.addAttribute("habitaciones", habitacionRepository.darHabitacionesMenosOcupadasSemana());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+        }
+        else
+        {
+            long startTime = System.currentTimeMillis();
+            model.addAttribute("servicios", habitacionRepository.darHabitaciones());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+        }
         return "habitaciones";
     }
 
