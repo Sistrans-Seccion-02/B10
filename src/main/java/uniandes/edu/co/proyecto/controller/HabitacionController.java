@@ -30,6 +30,20 @@ public class HabitacionController {
             long endTime = System.currentTimeMillis();
             System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
+        else if (RF.equals("1"))
+        {
+            long startTime = System.currentTimeMillis();
+            model.addAttribute("habitaciones", habitacionRepository.darIngresosHabitaciones());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+        }        
+        else if (RF.equals("3"))
+        {
+            long startTime = System.currentTimeMillis();
+            model.addAttribute("habitaciones", habitacionRepository.darIndiceOcupacionHabitaciones());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+        }         
         else if (RF.equals("6.2"))
         {
             long startTime = System.currentTimeMillis();

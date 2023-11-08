@@ -52,13 +52,15 @@ public interface ServicioRepository extends JpaRepository<Servicio, String>{
     //RF4.1
      @Query(value= "SELECT servicios.*  \r\n" + //
                   "FROM servicios INNER JOIN reserva_servicio ON servicios.nombre = reserva_servicio.servicios_nombre \r\n" + //
-                  "WHERE servicios.costo > :costoIni AND servicios.costo < :costoFin AND servicios.nombre = :servicio AND reserva_servicio.fecha_reserva BETWEEN TO_DATE(:fechaInicio, 'YYYY-MM-DD') AND TO_DATE(:fechaFin, 'YYYY-MM-DD') ", nativeQuery=true)
+                  "WHERE servicios.costo > :costoIni AND servicios.costo < :costoFin AND servicios.nombre = :servicio AND reserva_servicio.fecha_reserva BETWEEN TO_DATE(:fechaInicio, 'YYYY-MM-DD') AND TO_DATE(:fechaFin, 'YYYY-MM-DD') \r\n" + //
+                  "ORDER BY servicios.nombre", nativeQuery=true)
     Collection<Servicio> darServicioPorCondicion1(@Param("costoIni") Integer costoIni, @Param("costoFin") Integer costoFin, @Param("servicio") String servicio, @Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin);
 
     //RF4.2
      @Query(value= "SELECT servicios.*  \r\n" + //
                   "FROM servicios INNER JOIN reserva_servicio ON servicios.nombre = reserva_servicio.servicios_nombre \r\n" + //
-                  "WHERE (servicios.costo > :costoIni AND servicios.costo < :costoFin) OR servicios.nombre = :servicio OR reserva_servicio.fecha_reserva BETWEEN TO_DATE(:fechaInicio, 'YYYY-MM-DD') AND TO_DATE(:fechaFin, 'YYYY-MM-DD') ", nativeQuery=true)
+                  "WHERE (servicios.costo > :costoIni AND servicios.costo < :costoFin) OR servicios.nombre = :servicio OR reserva_servicio.fecha_reserva BETWEEN TO_DATE(:fechaInicio, 'YYYY-MM-DD') AND TO_DATE(:fechaFin, 'YYYY-MM-DD') \r\n" + //
+                  "ORDER BY servicios.nombre", nativeQuery=true)
     Collection<Servicio> darServicioPorCondicion2(@Param("costoIni") Integer costoIni, @Param("costoFin") Integer costoFin, @Param("servicio") String servicio, @Param("fechaInicio") String fechaInicio, @Param("fechaFin") String fechaFin);
 
     //RF5

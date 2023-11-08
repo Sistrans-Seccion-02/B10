@@ -38,6 +38,20 @@ public interface HabitacionRepository extends JpaRepository<Habitacion,Integer>{
     @Transactional
     @Query(value = "DELETE FROM habitaciones WHERE numero=:numero", nativeQuery = true)
     void eliminarHabitacion(@Param("numero") Integer numero);
+    //RF1
+    @Query(value= "SELECT habitaciones.* FROM habitaciones WHERE habitaciones.numero in (SELECT habitaciones.numero \r\n" + //
+                    "FROM servicios INNER JOIN reserva_servicio ON servicios.nombre = reserva_servicio.SERVICIOS_NOMBRE \r\n" + //
+                    "INNER JOIN habitaciones ON RESERVA_servicio.HABITACIONES_NUMERO = habitaciones.numero \r\n" + //
+                    "WHERE reserva_servicio.fecha_reserva >= SYSDATE - INTERVAL '1' YEAR \r\n" + //
+                    "GROUP BY habitaciones.numero) ", nativeQuery = true)
+    Collection<Habitacion> darIngresosHabitaciones();
+
+    //RF3
+    @Query(value= "SELECT habitaciones.* FROM habitaciones WHERE habitaciones.numero in (SELECT habitaciones.numero \r\n" + //
+                    "FROM habitaciones INNER JOIN reserva_habitacion ON habitaciones.numero = reserva_habitacion.habitaciones_numero \r\n" + //
+                    "WHERE reserva_habitacion.fecha_inicio >= SYSDATE - INTERVAL '1' YEAR \r\n" + //
+                    "GROUP BY habitaciones.numero) ", nativeQuery = true)
+    Collection<Habitacion> darIndiceOcupacionHabitaciones();
 
     //RF11.3
     @Query(value= "SELECT h.* FROM habitaciones h "+
