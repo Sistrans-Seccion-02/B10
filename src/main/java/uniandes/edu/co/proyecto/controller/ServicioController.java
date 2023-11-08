@@ -25,27 +25,45 @@ public class ServicioController {
 
         if( RF == null || RF.equals(""))
         {
+            long startTime = System.currentTimeMillis();
             model.addAttribute("servicios", servicioRepository.darServicios());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
         else if (RF.equals("2"))
         {
+            long startTime = System.currentTimeMillis();
             model.addAttribute("servicios", servicioRepository.dar20Servicios());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
         else if (RF.equals("4"))
         {
+            long startTime = System.currentTimeMillis();
             model.addAttribute("servicios", servicioRepository.darServicioPorCondicion(costoIni, costoFin, servicio, fechaInicio, fechaFin));
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
         else if (RF.equals("5"))
         {
+            long startTime = System.currentTimeMillis();
             model.addAttribute("servicios", servicioRepository.darConumosClienteFechas(Integer.parseInt(documento), fechaInicio, fechaFin));
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
         else if (RF.equals("8"))
         {
+            long startTime = System.currentTimeMillis();
             model.addAttribute("servicios", servicioRepository.darServiciosMenos3VecesSemanales());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
         else
         {
+            long startTime = System.currentTimeMillis();
             model.addAttribute("servicios", servicioRepository.darServicios());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
 
         

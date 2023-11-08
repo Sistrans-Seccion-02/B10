@@ -31,23 +31,38 @@ public class UsuarioController{
 
         if( RF == null || RF.equals(""))
         {
+            long startTime = System.currentTimeMillis();
             model.addAttribute("usuarios", usuarioRepository.darUsuarios());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
         else if ((RF.equals("7")))
         {
+            long startTime = System.currentTimeMillis();
             model.addAttribute("usuarios", usuarioRepository.darBuenosClientes());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
         else if((RF.equals("9")))
         {
+            long startTime = System.currentTimeMillis();
             model.addAttribute("usuarios", usuarioRepository.darUsuariosPorConsumo(servicio, fechaInicio, fechaFin));
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
         else if(RF.equals("10"))
         {
+            long startTime = System.currentTimeMillis();
             model.addAttribute("usuarios", usuarioRepository.darNoUsuariosPorConsumo(servicio, fechaInicio, fechaFin));
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
         else
         {
+            long startTime = System.currentTimeMillis();
             model.addAttribute("usuarios", usuarioRepository.darUsuarios());
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
         }
 
 
